@@ -8,7 +8,7 @@ GAMBATTE_CORE ?= $(firstword $(wildcard /usr/lib/x86_64-linux-gnu/libretro/gamba
 
 all: game.gb
 
-SRC = $(shell find . -type f -name "*.c")
+SRC = $(shell find src/ -type f -name "*.c")
 
 game.gb: $(SRC)
 	$(LCC) $(CFLAGS) -o $@ $^

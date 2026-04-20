@@ -1,7 +1,8 @@
-#include <stdio.h>
 #include <gb/gb.h>
 
-int main(void) {
-    printf("Hello, World!\n");
-    return 0;
+int main(void)
+{
+    while(1) {
+        vsync();
+    }
 }
