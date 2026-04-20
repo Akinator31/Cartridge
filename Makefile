@@ -1,16 +1,25 @@
 GBDK_HOME = /opt/gbdk
 LCC = $(GBDK_HOME)/bin/lcc
 CFLAGS = -Wf--std=c11
+RETROARCH = retroarch
+GAMBATTE_CORE ?= $(firstword $(wildcard /usr/lib/x86_64-linux-gnu/libretro/gambatte_libretro.so /usr/lib/libretro/gambatte_libretro.so))
 
 .PHONY: all re clean fclean
 
 all: game.gb
 
-game.gb: src/main.c
+SRC = $(shell find . -type f -name "*.c")
+
+game.gb: $(SRC)
 	$(LCC) $(CFLAGS) -o $@ $^
 
 run: all
-	retroarch -L /usr/lib/libretro/gambatte_libretro.so game.gb
+	@if [ -z "$(GAMBATTE_CORE)" ]; then \
+		echo "Error: gambatte_libretro.so not found."; \
+		echo "Install libretro-gambatte or set GAMBATTE_CORE=/path/to/gambatte_libretro.so"; \
+		exit 1; \
+	fi
+	$(RETROARCH) -L $(GAMBATTE_CORE) game.gb
 
 re: fclean
 	$(MAKE) all
