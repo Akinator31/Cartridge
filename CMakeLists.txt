@@ -5,6 +5,7 @@ set(GBDK_HOME /opt/gbdk)
 
 include_directories(${GBDK_HOME}/include)
 add_library(dummy EXCLUDE_FROM_ALL src/main.c)
+target_include_directories(dummy PRIVATE ${CMAKE_SOURCE_DIR}/include)
 
 add_custom_target(game
         COMMAND make
