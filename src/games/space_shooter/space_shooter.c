@@ -1,11 +1,13 @@
 #include "cartridge.h"
 
-void load_shooter(void) {
+shooter_game_st* load_shooter(void) {
     // Initialize Shooter game resources
+    return NULL;
 }
 
-void update_shooter(UINT8* keys) {
+void update_shooter(UINT8* keys, shooter_game_st* shooter_st) {
     (void)keys;
+    (void)shooter_st;
     // Update Shooter game logic
 }
 

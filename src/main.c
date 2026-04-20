@@ -2,11 +2,16 @@
 #include <gb/gb.h>
 
 int main(void) {
-    GAME_STATE state = GAME_STATE_MENU;
-    GAME_STATE prev_state = state;
+    core_st core = { .state = GAME_STATE_MENU,
+                     .prev_state = GAME_STATE_MENU,
+                     .tetris_game = NULL,
+                     .shooter_game = NULL,
+                     .kevin_game = NULL,
+                     .main_menu = NULL,
+                     .keys = 0 };
     DISPLAY_ON;
     SHOW_SPRITES;
 
-    start_loop(&state, &prev_state);
+    start_loop(&core);
     return 0;
 }
