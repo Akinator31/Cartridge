@@ -53,7 +53,7 @@ void update_main_menu(core_st* core) {
 
     gotoxy(5, 12);
     if (selected == 2 && !blink_on)
-        printf("     ");
+        printf("        ");
     else
         printf("ARKANOID");
 
