@@ -13,8 +13,8 @@ void switch_state(core_st* core, GAME_STATE new_state) {
         case GAME_STATE_SHOOTER:
             unload_shooter(core->shooter_game);
             break;
-        case GAME_STATE_KEVIN:
-            unload_kevin(core->kevin_game);
+        case GAME_STATE_ARKANOID:
+            unload_arkanoid(core->arkanoid);
             break;
         }
         core->prev_state = core->state;
@@ -28,8 +28,8 @@ void switch_state(core_st* core, GAME_STATE new_state) {
         case GAME_STATE_SHOOTER:
             core->shooter_game = load_shooter();
             break;
-        case GAME_STATE_KEVIN:
-            core->kevin_game = load_kevin();
+        case GAME_STATE_ARKANOID:
+            core->arkanoid = load_arkanoid();
             break;
         }
     }
@@ -46,8 +46,8 @@ void handle_game_state(core_st* core) {
     case GAME_STATE_SHOOTER:
         update_shooter(&core->keys, core->shooter_game);
         break;
-    case GAME_STATE_KEVIN:
-        update_kevin(&core->keys, core->kevin_game);
+    case GAME_STATE_ARKANOID:
+        update_arkanoid(&core->keys, core->arkanoid);
         break;
     }
 }
