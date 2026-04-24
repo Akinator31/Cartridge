@@ -15,4 +15,25 @@ typedef struct tetris_scene_functions_s {
         void (*scene_func)(UINT8* keys, tetris_game_st* tetris_st);
 } tetris_scene_functions_st;
 
+typedef struct {
+        int8_t x;
+        int8_t y;
+} coords_t;
+
+typedef struct {
+        coords_t blocs[4];
+} tetromino_t;
+
+typedef enum {
+    TETROMINO_I,
+    TETROMINO_J,
+    TETROMINO_L,
+    TETROMINO_O,
+    TETROMINO_S,
+    TETROMINO_T,
+    TETROMINO_Z
+} tetromino_type;
+
 void tetris_menu_scene(UINT8* keys, tetris_game_st* tetris_st);
+void tetris_game_scene(UINT8* keys, tetris_game_st* tetris_st);
+void draw_tetromino(tetromino_type type, coords_t* position);
