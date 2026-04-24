@@ -1,9 +1,25 @@
 #pragma once
 #include <gb/gb.h>
 
+#define TILE_EMPTY 0U
+#define TILE_WALL 1U
+#define TILE_PATTERN 2U
+
+#define BOARD_LEFT 3U
+#define BOARD_TOP 1U
+#define BOARD_WIDTH 10U
+#define BOARD_HEIGHT 18U
+
+#define NEXT_LEFT 16U
+#define NEXT_TOP 5U
+#define NEXT_WIDTH 6U
+#define NEXT_HEIGHT 5U
+
 typedef enum { TETRIS_PLAYER_1, TETRIS_PLAYER_2, TETRIS_PLAYER_3 } tetris_player;
 
 typedef enum { TETRIS_MENU, TETRIS_SCOREBOARD, TETRIS_PLAY } tetris_scene;
+
+typedef enum { TETRIS_LEFT, TETRIS_RIGHT, TETRIS_DOWN, TETRIS_UP } tetris_direction;
 
 typedef struct tetris_game_s {
         UINT8 previous_keys;
@@ -37,3 +53,4 @@ typedef enum {
 void tetris_menu_scene(UINT8* keys, tetris_game_st* tetris_st);
 void tetris_game_scene(UINT8* keys, tetris_game_st* tetris_st);
 void draw_tetromino(tetromino_type type, coords_t* position);
+void draw_tetris_background(void);

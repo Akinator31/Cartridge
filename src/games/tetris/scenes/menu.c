@@ -25,6 +25,7 @@ void tetris_menu_scene(UINT8* keys, tetris_game_st* tetris_st) {
         else if (selected == 1)
             tetris_st->current_scene = TETRIS_SCOREBOARD;
         clean_screen();
+        draw_tetris_background();
         return;
     }
     frame++;
