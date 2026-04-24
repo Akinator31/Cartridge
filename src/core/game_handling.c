@@ -3,6 +3,7 @@
 
 void switch_state(core_st* core, GAME_STATE new_state) {
     if (core->state != new_state) {
+        clean_screen();
         switch (core->prev_state) {
         case GAME_STATE_MENU:
             break;
@@ -22,13 +23,13 @@ void switch_state(core_st* core, GAME_STATE new_state) {
         case GAME_STATE_MENU:
             break;
         case GAME_STATE_TETRIS:
-            load_tetris();
+            core->tetris_game = load_tetris();
             break;
         case GAME_STATE_SHOOTER:
-            load_shooter();
+            core->shooter_game = load_shooter();
             break;
         case GAME_STATE_KEVIN:
-            load_kevin();
+            core->kevin_game = load_kevin();
             break;
         }
     }

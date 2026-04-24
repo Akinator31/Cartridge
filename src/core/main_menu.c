@@ -28,6 +28,8 @@ void update_main_menu(core_st* core) {
             switch_state(core, GAME_STATE_SHOOTER);
         else
             switch_state(core, GAME_STATE_KEVIN);
+
+        return;
     }
 
     frame++;
