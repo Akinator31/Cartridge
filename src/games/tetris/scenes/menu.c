@@ -1,3 +1,4 @@
+#include "cartridge.h"
 #include "tetris.h"
 #include <asm/sm83/types.h>
 #include <gb/gb.h>
@@ -18,6 +19,14 @@ void tetris_menu_scene(UINT8* keys, tetris_game_st* tetris_st) {
     }
     if (pressed & J_DOWN)
         selected = (selected + 1) % 2;
+    if (pressed & J_START) {
+        if (selected == 0)
+            tetris_st->current_scene = TETRIS_PLAY;
+        else if (selected == 1)
+            tetris_st->current_scene = TETRIS_SCOREBOARD;
+        clean_screen();
+        return;
+    }
     frame++;
     blink_on = ((frame >> 3U) & 0x01U);
 

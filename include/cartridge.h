@@ -5,6 +5,9 @@
 #include <asm/sm83/types.h>
 #include <gb/gb.h>
 
+#define SCREEN_MIN_X 8
+#define SCREEN_MIN_Y 16
+
 typedef enum GAME_STATE {
     GAME_STATE_MENU,
     GAME_STATE_TETRIS,
