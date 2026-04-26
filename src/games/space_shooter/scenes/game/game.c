@@ -1,4 +1,5 @@
 #include "cartridge.h"
+#include "save.h"
 #include "shooter/shooter.h"
 #include "shooter/bullets.h"
 #include "shooter/player.h"
@@ -39,6 +40,7 @@ void shooter_game_scene(UINT8* keys, shooter_game_st* shooter_st) {
         if (shooter_st->lives > 0)
             shooter_st->lives--;
         if (shooter_st->lives == 0) {
+            save_try_insert_score(SAVE_GAME_SHOOTER, shooter_st->score);
             clean_screen();
             shooter_st->current_scene = SHOOTER_MENU;
             return;
