@@ -7,6 +7,8 @@ typedef struct shooter_game_s {
         UINT8 previous_keys;
         shooter_scene current_scene;
         UINT16 score;
+        UINT8 player_x;
+        UINT8 player_y;
 } shooter_game_st;
 
 typedef struct shooter_scene_functions_s {
