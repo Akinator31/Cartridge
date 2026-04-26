@@ -21,7 +21,7 @@ find_file(GAMBATTE_CORE
 )
 
 add_custom_target(game
-        COMMAND ${LCC} -Wall -Wextra -Iinclude -o game.gb ${GB_SOURCES}
+        COMMAND ${LCC} -Wall -Wextra -Iinclude -Wl-yt0x03 -Wl-ya1 -o game.gb ${GB_SOURCES}
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         SOURCES ${GB_SOURCES}
         COMMENT "Building Game Boy ROM..."

@@ -1,4 +1,5 @@
 #include "cartridge.h"
+#include "save.h"
 #include <gb/gb.h>
 
 int main(void) {
@@ -11,6 +12,7 @@ int main(void) {
                      .keys = 0 };
     DISPLAY_ON;
     SHOW_SPRITES;
+    save_init();
 
     start_loop(&core);
     return 0;
