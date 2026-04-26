@@ -19,11 +19,13 @@ void shooter_menu_scene(UINT8* keys, shooter_game_st* shooter_st) {
     if (pressed & J_DOWN)
         selected = (selected + 1) % 2;
     if (pressed & J_START) {
-        if (selected == 0)
-            shooter_st->current_scene = SHOOTER_PLAY;
-        else
-            shooter_st->current_scene = SHOOTER_SCOREBOARD;
         clean_screen();
+        if (selected == 0) {
+            reset_shooter_play(shooter_st);
+            shooter_st->current_scene = SHOOTER_PLAY;
+        } else {
+            shooter_st->current_scene = SHOOTER_SCOREBOARD;
+        }
         return;
     }
 
