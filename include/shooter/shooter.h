@@ -3,6 +3,13 @@
 
 #define SHOOTER_MAX_BULLETS 8
 
+#define SHIP_SPRITE_INDEX  0
+#define BULLET_SPRITE_BASE 1
+#define ENEMY_SPRITE_INDEX 9
+
+#define SPRITE_HIDDEN_X 0
+#define SPRITE_HIDDEN_Y 0
+
 typedef enum { SHOOTER_MENU, SHOOTER_PLAY, SHOOTER_SCOREBOARD } shooter_scene;
 
 typedef struct bullet_s {
@@ -35,7 +42,3 @@ typedef struct shooter_scene_functions_s {
 void shooter_menu_scene(UINT8* keys, shooter_game_st* shooter_st);
 void shooter_game_scene(UINT8* keys, shooter_game_st* shooter_st);
 void shooter_scoreboard_scene(UINT8* keys, shooter_game_st* shooter_st);
-
-void update_player_movement(UINT8* keys, shooter_game_st* shooter_st);
-void handle_player_fire(const UINT8* keys, shooter_game_st* shooter_st);
-void update_bullets(UINT8* keys, shooter_game_st* shooter_st);

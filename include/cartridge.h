@@ -1,8 +1,8 @@
 #pragma once
 #include "kevin.h"
-#include "shooter.h"
-#include "tetris.h"
 #include <asm/sm83/types.h>
+#include "shooter/shooter.h"
+#include "tetris.h"
 #include <gb/gb.h>
 
 #define SCREEN_MIN_X 8
