@@ -4,13 +4,14 @@ project(GameBoy C)
 set(GBDK_HOME /opt/gbdk)
 set(LCC ${GBDK_HOME}/bin/lcc)
 
-file(GLOB_RECURSE GB_SOURCES CONFIGURE_DEPENDS src/*.c)
-
-add_library(dummy EXCLUDE_FROM_ALL ${GB_SOURCES})
-target_include_directories(dummy PRIVATE
+include_directories(
         ${CMAKE_SOURCE_DIR}/include
         ${GBDK_HOME}/include
 )
+
+file(GLOB_RECURSE GB_SOURCES CONFIGURE_DEPENDS src/*.c src/)
+
+add_library(dummy EXCLUDE_FROM_ALL ${GB_SOURCES})
 
 find_file(GAMBATTE_CORE
         NAMES gambatte_libretro.so
