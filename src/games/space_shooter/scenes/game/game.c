@@ -3,6 +3,7 @@
 #include "shooter/bullets.h"
 #include "shooter/player.h"
 #include "shooter/enemy.h"
+#include "shooter/hud.h"
 #include <gb/gb.h>
 
 static UINT8 sprites_collide(UINT8 ax, UINT8 ay, UINT8 bx, UINT8 by) {
@@ -32,9 +33,26 @@ void shooter_game_scene(UINT8* keys, shooter_game_st* shooter_st) {
         }
     }
 
+    if (shooter_st->enemy.active &&
+        sprites_collide(shooter_st->player_x, shooter_st->player_y,
+                        shooter_st->enemy.x, shooter_st->enemy.y)) {
+        if (shooter_st->lives > 0)
+            shooter_st->lives--;
+        if (shooter_st->lives == 0) {
+            clean_screen();
+            shooter_st->current_scene = SHOOTER_MENU;
+            return;
+        }
+        shooter_st->player_x = PLAYER_START_X;
+        shooter_st->player_y = PLAYER_START_Y;
+        respawn_enemy(&shooter_st->enemy);
+    }
+
     move_sprite(SHIP_SPRITE_INDEX, shooter_st->player_x, shooter_st->player_y);
     update_bullets_positions(&i, shooter_st);
     update_enemy_position(shooter_st);
+
+    hud_render(shooter_st);
 
     shooter_st->previous_keys = *keys;
 }
