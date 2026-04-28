@@ -1,7 +1,41 @@
 #include "arkanoid.h"
 #include "cartridge.h"
+#include <gbdk/console.h>
+#include <stdio.h>
 
 static arkanoid_st game_state;
+
+void arkanoid_menu_scene(UINT8* keys, arkanoid_st* state) {
+    static UINT8 frame = 0;
+    UINT8 blink_on;
+
+    if (*keys & J_START) {
+        clean_screen();
+        state->current_scene = ARKANOID_PLAY;
+        // todo add setup game display when start button is pressed :p
+        return;
+    }
+
+    frame++;
+    blink_on = ((frame >> 3U) & 0x01U);
+
+    gotoxy(2, 3);
+    printf("ARKANOID");
+    gotoxy(2, 6);
+    printf("BREAK ALL");
+    gotoxy(2, 7);
+    printf("THE BRICKS");
+    gotoxy(2, 9);
+    printf("USE LEFT/RIGHT");
+    gotoxy(2, 10);
+    printf("TO MOVE PADDLE");
+
+    gotoxy(2, 13);
+    if (!blink_on)
+        printf("              ");
+    else
+        printf("PRESS START");
+}
 
 arkanoid_st* load_arkanoid(void) {
     game_state.paddle_x = 72;
@@ -20,7 +54,7 @@ arkanoid_st* load_arkanoid(void) {
 
 void update_arkanoid(UINT8* keys, arkanoid_st* state) {
     if (state->current_scene == ARKANOID_MENU) {
-        // todo implement scene menu
+        arkanoid_menu_scene(keys, state);
     } else if (state->current_scene == ARKANOID_PLAY) {
         // todo implement scene "game"
     }
