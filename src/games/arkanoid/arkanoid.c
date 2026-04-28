@@ -18,10 +18,13 @@ arkanoid_st* load_arkanoid(void) {
     return &game_state;
 }
 
-void update_arkanoid(UINT8* keys, arkanoid_st* arkanoid_st) {
-    (void)keys;
-    (void)arkanoid_st;
-    // Update Arkanoid logic
+void update_arkanoid(UINT8* keys, arkanoid_st* state) {
+    if (state->current_scene == ARKANOID_MENU) {
+        // todo implement scene menu
+    } else if (state->current_scene == ARKANOID_PLAY) {
+        // todo implement scene "game"
+    }
+    state->previous_keys = *keys;
 }
 
 void unload_arkanoid(void) {
