@@ -25,5 +25,5 @@ void update_arkanoid(UINT8* keys, arkanoid_st* arkanoid_st) {
 }
 
 void unload_arkanoid(void) {
-    // Clean up Arkanoid resources
+    HIDE_SPRITES;
 }
