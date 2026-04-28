@@ -11,7 +11,7 @@ const unsigned char arkanoid_tiles[] = {
     0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00 // brick
 };
 
-void arkanoid_menu_scene(UINT8* keys, arkanoid_st* state) {
+static void arkanoid_menu_scene(UINT8* keys, arkanoid_st* state) {
     static UINT8 frame = 0;
     UINT8 blink_on;
 
