@@ -1,6 +1,8 @@
 #pragma once
 #include <gb/gb.h>
 
+#define ARKANOID_PADDING 17
+
 typedef enum {
     ARKANOID_MENU,
     ARKANOID_PLAY

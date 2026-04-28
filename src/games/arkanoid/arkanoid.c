@@ -6,10 +6,46 @@
 static arkanoid_st game_state;
 
 const unsigned char arkanoid_tiles[] = {
-    0x3C,0x3C,0x42,0x42,0x81,0x81,0xA5,0xA5,0x81,0x81,0xA5,0xA5,0x42,0x42,0x3C,0x3C, // ball
+    0x3C,0x3C,0x7E,0x42,0xFF,0x81,0xE7,0x99,0xE7,0x99,0xFF,0x81,0x7E,0x42,0x3C,0x3C, // ball
     0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF, // brick
     0x66,0x66,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x7E,0x7E,0x3C,0x3C,0x18,0x18, // heart
 };
+
+void init_bricks(arkanoid_st* state) {
+    uint8_t x, y;
+    state->bricks_left = 0;
+    for (y = 2; y < 5; y++) {
+        for (x = 2; x < 18; x++) {
+            set_bkg_tile_xy(x, y, 129);
+            state->bricks_left++;
+        }
+    }
+}
+
+static void setup_game_display(arkanoid_st* state) {
+    set_sprite_data(0, 2, arkanoid_tiles);
+    set_bkg_data(128, 3, arkanoid_tiles);
+
+    init_bricks(state);
+
+    set_sprite_tile(0, 0); 
+    set_sprite_tile(1, 1); 
+    set_sprite_tile(2, 1); 
+
+    move_sprite(0, state->ball_x, state->ball_y);
+    move_sprite(1, state->paddle_x, 140);
+    move_sprite(2, state->paddle_x + 8, 140);
+
+    SHOW_SPRITES;
+    SHOW_BKG;
+    
+    gotoxy(0, 0);
+    printf("%04d", state->score); // j'arrive pas a afficher 0000 comment dans le space shooter
+    gotoxy(12, 0);
+    for (uint8_t i = 0; i < state->lives; i++) {
+        set_bkg_tile_xy(ARKANOID_PADDING + i, 0, 130);
+    }
+}
 
 static void arkanoid_menu_scene(UINT8* keys, arkanoid_st* state) {
     static UINT8 frame = 0;
@@ -18,7 +54,7 @@ static void arkanoid_menu_scene(UINT8* keys, arkanoid_st* state) {
     if (*keys & J_START) {
         clean_screen();
         state->current_scene = ARKANOID_PLAY;
-        // todo add setup game display when start button is pressed :p
+        setup_game_display(state);
         return;
     }
 
