@@ -49,7 +49,7 @@ tetris_game_st* load_tetris(void) {
     tetris_st->next_tetromino = get_random_tetromino();
     tetris_st->can_get_next_tetromino = TRUE;
     set_sprite_data(0, 1, tetris_tile);
-    for (uint8_t i = 0; i < 4; i++)
+    for (uint8_t i = 0; i < 8; i++)
         set_sprite_tile(i, 0);
     return tetris_st;
 }
