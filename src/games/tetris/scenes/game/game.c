@@ -23,6 +23,39 @@ static int8_t tetromino_min_x(tetromino_type type) {
     return min_x;
 }
 
+static void move_blocs_in_y(UINT8 start, tetris_game_st* tetris_st) {
+    for (UINT8 y = start; y > 0; y--) {
+        for (UINT8 x = 0; x < BOARD_WIDTH; x++) {
+            tetris_st->board[y][x] = tetris_st->board[y - 1][x];
+            set_bkg_tile_xy(BOARD_LEFT + x, BOARD_TOP + y, tetris_st->board[y][x]);
+        }
+    }
+}
+
+static void move_blocs_in_x(UINT8 y, UINT8 start, tetris_game_st* tetris_st) {
+    for (UINT8 x = start; x > 0; x--) {
+        tetris_st->board[y][x] = tetris_st->board[y][x - 1];
+        set_bkg_tile_xy(BOARD_LEFT + x, BOARD_TOP + y, tetris_st->board[y][x]);
+    }
+}
+
+static void handle_if_line_completed(tetris_game_st* tetris_st) {
+    UINT8 lines_cleared = 0;
+
+    for (UINT8 y = 0; y < BOARD_HEIGHT; ++y) {
+        UINT8 x = 0;
+        for (; x < BOARD_WIDTH; ++x) {
+            if (tetris_st->board[y][x] == TILE_EMPTY)
+                break;
+        }
+        if (x == BOARD_WIDTH) {
+            ++lines_cleared;
+            move_blocs_in_y(y, tetris_st);
+            move_blocs_in_x(0, BOARD_WIDTH - 1, tetris_st);
+        }
+    }
+}
+
 static int8_t tetromino_max_x(tetromino_type type) {
     int8_t max_x = TETROMINOS[type].blocs[0].x;
 
@@ -78,6 +111,7 @@ static void lock_current_tetromino(tetris_game_st* tetris_st) {
     }
     hide_tetromino_sprites();
     tetris_st->can_get_next_tetromino = TRUE;
+    handle_if_line_completed(tetris_st);
 }
 static void spawn_tetromino(tetris_game_st* tetris_st) {
     int8_t min_x = 0;
