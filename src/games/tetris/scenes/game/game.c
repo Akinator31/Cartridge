@@ -2,6 +2,8 @@
 #include "tetris.h"
 #include <asm/types.h>
 #include <gb/gb.h>
+#include <gbdk/console.h>
+#include <stdio.h>
 
 static const tetromino_t TETROMINOS[7] = {
     { .blocs = { { -1, 0 }, { 0, 0 }, { 1, 0 }, { 2, 0 } }, .bloc_len = 4 },
@@ -68,6 +70,7 @@ static void handle_if_line_completed(tetris_game_st* tetris_st) {
             move_blocs_in_x(0, BOARD_WIDTH - 1, tetris_st);
         }
     }
+    tetris_st->score += lines_cleared * 10;
 }
 
 static int8_t tetromino_max_x(tetromino_type type, UINT8 rotation) {
@@ -239,5 +242,9 @@ void tetris_game_scene(UINT8* keys, tetris_game_st* tetris_st) {
         0U,
         tetris_st);
     show_next_tetromino(tetris_st);
+    gotoxy(15, 0);
+    printf("Score");
+    gotoxy(15, 1);
+    printf("%u", tetris_st->score);
     tetris_st->frame++;
 }
