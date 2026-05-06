@@ -20,6 +20,7 @@
 #define TILE_LOCKED 3U
 
 #define TETROMINO_BLOCK_COUNT 4U
+#define TETROMINO_ROTATION_COUNT 4U
 
 typedef enum { TETRIS_PLAYER_1, TETRIS_PLAYER_2, TETRIS_PLAYER_3 } tetris_player;
 
@@ -50,6 +51,7 @@ typedef struct tetris_game_s {
         tetris_scene current_scene;
         tetromino_type current_tetromino;
         tetromino_type next_tetromino;
+        UINT8 current_rotation;
         coords_t current_position;
         BOOLEAN can_get_next_tetromino;
         BOOLEAN can_move;
@@ -66,8 +68,10 @@ typedef struct {
 
 void tetris_menu_scene(UINT8* keys, tetris_game_st* tetris_st);
 void tetris_game_scene(UINT8* keys, tetris_game_st* tetris_st);
-void draw_tetromino(tetromino_type type, coords_t* position, UINT8 sprite_index, tetris_game_st* tetris_st);
+void draw_tetromino(
+    tetromino_type type, UINT8 rotation, coords_t* position, UINT8 sprite_index, tetris_game_st* tetris_st);
 void draw_tetris_background(void);
 tetromino_type get_random_tetromino(void);
 void clear_board(tetris_game_st* tetris_st);
 void hide_tetromino_sprites(void);
+const UINT8* get_tetromino_rotation_sprites(tetromino_type type, UINT8 rotation);
