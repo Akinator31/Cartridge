@@ -165,6 +165,10 @@ static void spawn_tetromino(tetris_game_st* tetris_st) {
             tetris_st->current_position,
             tetris_st)) {
         clear_board(tetris_st);
+        hide_tetromino_sprites();
+        tetris_st->score = 0;
+        tetris_st->can_get_next_tetromino = TRUE;
+        tetris_st->current_scene = TETRIS_GAME_OVER;
         tetris_st->current_position.x =
             (INT8)(((INT16)BOARD_WIDTH - ((INT16)max_x - (INT16)min_x + 1)) / 2) - min_x;
         tetris_st->current_position.y = (INT8)(-min_y);
