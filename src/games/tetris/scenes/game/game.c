@@ -186,6 +186,9 @@ void tetris_game_scene(UINT8* keys, tetris_game_st* tetris_st) {
         try_move_tetromino(-1, 0, tetris_st);
     else if (*keys & J_RIGHT)
         try_move_tetromino(1, 0, tetris_st);
+    if (tetris_st->frame % 8 == 0)
+        try_move_tetromino(0, 1, tetris_st);
     draw_tetromino(tetris_st->current_tetromino, &tetris_st->current_position, 0U, tetris_st);
     show_next_tetromino(tetris_st);
+    tetris_st->frame++;
 }
