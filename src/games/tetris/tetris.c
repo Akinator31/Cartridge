@@ -6,7 +6,8 @@
 
 static const tetris_scene_functions_st tetris_scene_functions[] = { { .scene_func = tetris_menu_scene },
                                                                     { .scene_func = NULL },
-                                                                    { .scene_func = tetris_game_scene } };
+                                                                    { .scene_func = tetris_game_scene },
+                                                                    { .scene_func = tetris_game_over_scene } };
 
 static const unsigned char tetris_tile[] = { 0xFF, 0xFF, 0xFF, 0x81, 0xFF, 0x81, 0xFF, 0x81,
                                              0xFF, 0x81, 0xFF, 0x81, 0xFF, 0x81, 0xFF, 0xFF };

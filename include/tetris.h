@@ -25,7 +25,7 @@
 
 typedef enum { TETRIS_PLAYER_1, TETRIS_PLAYER_2, TETRIS_PLAYER_3 } tetris_player;
 
-typedef enum { TETRIS_MENU, TETRIS_SCOREBOARD, TETRIS_PLAY } tetris_scene;
+typedef enum { TETRIS_MENU, TETRIS_SCOREBOARD, TETRIS_PLAY, TETRIS_GAME_OVER } tetris_scene;
 
 typedef enum { TETRIS_LEFT, TETRIS_RIGHT, TETRIS_DOWN, TETRIS_UP } tetris_direction;
 
@@ -70,6 +70,7 @@ typedef struct {
 
 void tetris_menu_scene(UINT8* keys, tetris_game_st* tetris_st);
 void tetris_game_scene(UINT8* keys, tetris_game_st* tetris_st);
+void tetris_game_over_scene(UINT8* keys, tetris_game_st* tetris_st);
 void draw_tetromino(
     tetromino_type type, UINT8 rotation, coords_t* position, UINT8 sprite_index, tetris_game_st* tetris_st);
 void draw_tetris_background(void);
