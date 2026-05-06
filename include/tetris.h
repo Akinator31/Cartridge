@@ -1,4 +1,5 @@
 #pragma once
+#include <asm/types.h>
 #include <gb/gb.h>
 #include <stdint.h>
 
@@ -50,6 +51,7 @@ typedef struct tetris_game_s {
         tetromino_type next_tetromino;
         coords_t current_position;
         BOOLEAN can_get_next_tetromino;
+        BOOLEAN can_move;
 } tetris_game_st;
 
 typedef struct tetris_scene_functions_s {

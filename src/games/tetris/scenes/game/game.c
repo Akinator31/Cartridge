@@ -151,6 +151,13 @@ void draw_tetromino(tetromino_type type, coords_t* position, UINT8 sprite_index,
 }
 
 static void try_move_tetromino(int8_t dx, int8_t dy, tetris_game_st* tetris_st) {
+    if (!tetris_st->can_move) {
+        tetris_st->can_move = TRUE;
+        return;
+    }
+
+    tetris_st->can_move = FALSE;
+
     coords_t next_position = tetris_st->current_position;
 
     next_position.x += dx;
