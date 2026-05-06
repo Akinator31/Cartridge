@@ -45,6 +45,7 @@ typedef struct {
 typedef struct tetris_game_s {
         UINT8 board[BOARD_HEIGHT][BOARD_WIDTH];
         UINT8 previous_keys;
+        UINT8 frame;
         tetris_player current_player;
         tetris_scene current_scene;
         tetromino_type current_tetromino;
