@@ -138,7 +138,7 @@ static void spawn_tetromino(tetris_game_st* tetris_st) {
     }
 }
 
-void draw_tetromino(tetromino_type type, coords_t* position, tetris_game_st* tetris_st) {
+void draw_tetromino(tetromino_type type, coords_t* position, UINT8 sprite_index, tetris_game_st* tetris_st) {
     tetromino_t tetromino = TETROMINOS[type];
     INT16 x_final = 0;
     INT16 y_final = 0;
@@ -146,7 +146,7 @@ void draw_tetromino(tetromino_type type, coords_t* position, tetris_game_st* tet
     for (UINT8 i = 0; i < tetromino.bloc_len; i++) {
         x_final = ((INT16)BOARD_LEFT + (INT16)position->x + tetromino.blocs[i].x) * 8 + SCREEN_MIN_X;
         y_final = ((INT16)BOARD_TOP + (INT16)position->y + tetromino.blocs[i].y) * 8 + SCREEN_MIN_Y;
-        move_sprite(i, (UINT8)x_final, (UINT8)y_final);
+        move_sprite(sprite_index + i, (UINT8)x_final, (UINT8)y_final);
     }
 }
 
@@ -165,6 +165,12 @@ static void try_move_tetromino(int8_t dx, int8_t dy, tetris_game_st* tetris_st) 
     }
 }
 
+static void show_next_tetromino(tetris_game_st* tetris_st) {
+    static coords_t next_position = { NEXT_LEFT - 1, NEXT_TOP + 2 };
+
+    draw_tetromino(tetris_st->next_tetromino, &next_position, TETROMINO_BLOCK_COUNT, tetris_st);
+}
+
 void tetris_game_scene(UINT8* keys, tetris_game_st* tetris_st) {
     spawn_tetromino(tetris_st);
     if (*keys & J_DOWN)
@@ -173,5 +179,6 @@ void tetris_game_scene(UINT8* keys, tetris_game_st* tetris_st) {
         try_move_tetromino(-1, 0, tetris_st);
     else if (*keys & J_RIGHT)
         try_move_tetromino(1, 0, tetris_st);
-    draw_tetromino(tetris_st->current_tetromino, &tetris_st->current_position, tetris_st);
+    draw_tetromino(tetris_st->current_tetromino, &tetris_st->current_position, 0U, tetris_st);
+    show_next_tetromino(tetris_st);
 }

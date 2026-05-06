@@ -63,7 +63,7 @@ typedef struct {
 
 void tetris_menu_scene(UINT8* keys, tetris_game_st* tetris_st);
 void tetris_game_scene(UINT8* keys, tetris_game_st* tetris_st);
-void draw_tetromino(tetromino_type type, coords_t* position, tetris_game_st* tetris_st);
+void draw_tetromino(tetromino_type type, coords_t* position, UINT8 sprite_index, tetris_game_st* tetris_st);
 void draw_tetris_background(void);
 tetromino_type get_random_tetromino(void);
 void clear_board(tetris_game_st* tetris_st);

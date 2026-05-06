@@ -16,6 +16,6 @@ void clear_board(tetris_game_st* tetris_st) {
 }
 
 void hide_tetromino_sprites(void) {
-    for (UINT8 i = 0; i < TETROMINO_BLOCK_COUNT; ++i)
+    for (UINT8 i = 0; i < TETROMINO_BLOCK_COUNT * 2U; ++i)
         move_sprite(i, 0U, 0U);
 }
