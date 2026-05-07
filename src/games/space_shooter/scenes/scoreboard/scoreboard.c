@@ -1,6 +1,6 @@
-#include "shooter/shooter.h"
 #include "cartridge.h"
 #include "save.h"
+#include "shooter/shooter.h"
 #include <gb/gb.h>
 #include <gbdk/console.h>
 #include <stdio.h>

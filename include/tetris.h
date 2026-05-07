@@ -78,3 +78,4 @@ tetromino_type get_random_tetromino(void);
 void clear_board(tetris_game_st* tetris_st);
 void hide_tetromino_sprites(void);
 const UINT8* get_tetromino_rotation_sprites(tetromino_type type, UINT8 rotation);
+void tetris_scoreboard_scene(UINT8* keys, tetris_game_st* tetris_st);
