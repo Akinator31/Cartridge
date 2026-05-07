@@ -24,7 +24,16 @@ void tetris_menu_scene(UINT8* keys, tetris_game_st* tetris_st) {
             tetris_st->current_scene = TETRIS_PLAY;
         else if (selected == 1)
             tetris_st->current_scene = TETRIS_SCOREBOARD;
+        if (tetris_st->current_scene == TETRIS_PLAY) {
+            clear_board(tetris_st);
+            hide_tetromino_sprites();
+            tetris_st->score = 0;
+            tetris_st->frame = 0;
+            tetris_st->can_get_next_tetromino = TRUE;
+            tetris_st->current_rotation = 0U;
+        }
         clean_screen();
+        draw_tetris_background();
         return;
     }
     frame++;
