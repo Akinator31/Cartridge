@@ -40,14 +40,14 @@ void clean_screen(void);
 // Tetris
 tetris_game_st* load_tetris(void);
 void update_tetris(UINT8* keys, tetris_game_st* tetris_st);
-void unload_tetris(void);
+void unload_tetris(tetris_game_st* tetris_st);
 
 // Shooter
 shooter_game_st* load_shooter(void);
 void update_shooter(UINT8* keys, shooter_game_st* shooter_st);
-void unload_shooter(void);
+void unload_shooter(shooter_game_st* shooter_st);
 
 // Kevin
 kevin_game_st* load_kevin(void);
 void update_kevin(UINT8* keys, kevin_game_st* kevin_st);
-void unload_kevin(void);
+void unload_kevin(kevin_game_st* kevin_st);

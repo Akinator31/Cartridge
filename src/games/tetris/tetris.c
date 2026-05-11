@@ -63,6 +63,6 @@ void update_tetris(UINT8* keys, tetris_game_st* tetris_st) {
     tetris_scene_functions[tetris_st->current_scene].scene_func(keys, tetris_st);
 }
 
-void unload_tetris(void) {
-    // Clean up Tetris game resources
+void unload_tetris(tetris_game_st* tetris_st) {
+    free(tetris_st);
 }

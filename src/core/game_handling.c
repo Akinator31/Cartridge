@@ -8,13 +8,13 @@ void switch_state(core_st* core, GAME_STATE new_state) {
         case GAME_STATE_MENU:
             break;
         case GAME_STATE_TETRIS:
-            unload_tetris();
+            unload_tetris(core->tetris_game);
             break;
         case GAME_STATE_SHOOTER:
-            unload_shooter();
+            unload_shooter(core->shooter_game);
             break;
         case GAME_STATE_KEVIN:
-            unload_kevin();
+            unload_kevin(core->kevin_game);
             break;
         }
         core->prev_state = core->state;

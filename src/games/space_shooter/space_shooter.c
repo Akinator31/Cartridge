@@ -73,6 +73,6 @@ void update_shooter(UINT8* keys, shooter_game_st* shooter_st) {
     shooter_scene_functions[shooter_st->current_scene].scene_func(keys, shooter_st);
 }
 
-void unload_shooter(void) {
-    // Clean up Shooter game resources
+void unload_shooter(shooter_game_st* shooter_st) {
+    free(shooter_st);
 }
