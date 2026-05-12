@@ -42,9 +42,8 @@ static void setup_game_display(arkanoid_st* state) {
     
     gotoxy(0, 0);
     printf("%04d", state->score); // j'arrive pas a afficher 0000 comment dans le space shooter
-    gotoxy(12, 0);
-    for (uint8_t i = 0; i < state->lives; i++) {
-        set_bkg_tile_xy(ARKANOID_PADDING + i, 0, 130);
+    for (uint8_t i = 0; i < 3; i++) {
+        set_bkg_tile_xy(ARKANOID_PADDING + i, 0, (i < state->lives) ? 130 : 131);
     }
 }
 
@@ -140,9 +139,9 @@ static void arkanoid_play_scene(UINT8* keys, arkanoid_st* state) {
 
     if (state->ball_y > 150) {
         state->lives--;
-        gotoxy(12, 0);
-        for (uint8_t i = 0; i < state->lives; i++) {
-            set_bkg_tile_xy(ARKANOID_PADDING + i, 0, 130);
+        for (uint8_t i = 0; i < 3; i++) {
+            set_bkg_tile_xy(ARKANOID_PADDING + i, 0,
+                (i >= 3 - state->lives) ? 130 : 131);
         }
         
         if (state->lives > 0) {
