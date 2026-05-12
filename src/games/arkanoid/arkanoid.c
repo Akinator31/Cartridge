@@ -2,6 +2,7 @@
 #include "cartridge.h"
 #include <gbdk/console.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 static arkanoid_st game_state;
 
@@ -187,6 +188,7 @@ void update_arkanoid(UINT8* keys, arkanoid_st* state) {
     state->previous_keys = *keys;
 }
 
-void unload_arkanoid(void) {
+void unload_arkanoid(arkanoid_st* arkanoid_st) {
     HIDE_SPRITES;
+    free(arkanoid_st);
 }
