@@ -1,3 +1,5 @@
 *.gb
 cmake-build-debug/
 .idea/
+.vscode/c_cpp_properties.json
+**/*.DS_Store

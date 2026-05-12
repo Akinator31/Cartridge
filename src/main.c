@@ -7,7 +7,7 @@ int main(void) {
                      .prev_state = GAME_STATE_MENU,
                      .tetris_game = NULL,
                      .shooter_game = NULL,
-                     .kevin_game = NULL,
+                     .arkanoid = NULL,
                      .main_menu = NULL,
                      .keys = 0 };
     DISPLAY_ON;

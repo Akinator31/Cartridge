@@ -1,5 +1,5 @@
 #pragma once
-#include "kevin.h"
+#include "arkanoid.h"
 #include <asm/sm83/types.h>
 #include "shooter/shooter.h"
 #include "tetris.h"
@@ -12,7 +12,7 @@ typedef enum GAME_STATE {
     GAME_STATE_MENU,
     GAME_STATE_TETRIS,
     GAME_STATE_SHOOTER,
-    GAME_STATE_KEVIN
+    GAME_STATE_ARKANOID
 } GAME_STATE;
 
 typedef struct main_menu_s {
@@ -24,7 +24,7 @@ typedef struct core_s {
         GAME_STATE prev_state;
         tetris_game_st* tetris_game;
         shooter_game_st* shooter_game;
-        kevin_game_st* kevin_game;
+        arkanoid_st* arkanoid;
         main_menu_st* main_menu;
         UINT8 keys;
 } core_st;
@@ -47,7 +47,7 @@ shooter_game_st* load_shooter(void);
 void update_shooter(UINT8* keys, shooter_game_st* shooter_st);
 void unload_shooter(shooter_game_st* shooter_st);
 
-// Kevin
-kevin_game_st* load_kevin(void);
-void update_kevin(UINT8* keys, kevin_game_st* kevin_st);
-void unload_kevin(kevin_game_st* kevin_st);
+// Arkanoid
+arkanoid_st* load_arkanoid(void);
+void update_arkanoid(UINT8* keys, arkanoid_st* arkanoid_st);
+void unload_arkanoid(arkanoid_st* arkanoid_st);

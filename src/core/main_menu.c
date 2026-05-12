@@ -27,8 +27,7 @@ void update_main_menu(core_st* core) {
         else if (selected == 1)
             switch_state(core, GAME_STATE_SHOOTER);
         else
-            switch_state(core, GAME_STATE_KEVIN);
-
+            switch_state(core, GAME_STATE_ARKANOID);
         return;
     }
 
@@ -54,9 +53,9 @@ void update_main_menu(core_st* core) {
 
     gotoxy(5, 12);
     if (selected == 2 && !blink_on)
-        printf("     ");
+        printf("        ");
     else
-        printf("KEVIN");
+        printf("ARKANOID");
 
     gotoxy(3, 15);
     printf("PRESS START");
