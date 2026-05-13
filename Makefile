@@ -1,6 +1,6 @@
 GBDK_HOME = /opt/gbdk
 LCC = $(GBDK_HOME)/bin/lcc
-CFLAGS = -Wall -Wextra -Iinclude
+CFLAGS = -Wall -Wextra -Iinclude -Wl-yt0x03 -Wl-ya1
 RETROARCH = retroarch
 GAMBATTE_CORE ?= $(firstword $(wildcard /usr/lib/x86_64-linux-gnu/libretro/gambatte_libretro.so /usr/lib/libretro/gambatte_libretro.so))
 
