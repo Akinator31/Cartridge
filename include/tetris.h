@@ -73,7 +73,7 @@ void tetris_menu_scene(UINT8* keys, tetris_game_st* tetris_st);
 void tetris_game_scene(UINT8* keys, tetris_game_st* tetris_st);
 void tetris_game_over_scene(UINT8* keys, tetris_game_st* tetris_st);
 void draw_tetromino(
-    tetromino_type type, UINT8 rotation, coords_t* position, UINT8 sprite_index, tetris_game_st* tetris_st);
+    tetromino_type type, UINT8 rotation, coords_t* position, UINT8 sprite_index);
 void draw_tetris_background(void);
 tetromino_type get_random_tetromino(void);
 void clear_board(tetris_game_st* tetris_st);

@@ -177,7 +177,7 @@ static void spawn_tetromino(tetris_game_st* tetris_st) {
 }
 
 void draw_tetromino(
-    tetromino_type type, UINT8 rotation, coords_t* position, UINT8 sprite_index, tetris_game_st* tetris_st) {
+    tetromino_type type, UINT8 rotation, coords_t* position, UINT8 sprite_index) {
     tetromino_t tetromino = TETROMINOS[type];
     INT16 x_final = 0;
     INT16 y_final = 0;
@@ -210,7 +210,7 @@ static void try_move_tetromino(int8_t dx, int8_t dy, tetris_game_st* tetris_st) 
 static void show_next_tetromino(tetris_game_st* tetris_st) {
     static coords_t next_position = { NEXT_LEFT - 1, NEXT_TOP + 2 };
 
-    draw_tetromino(tetris_st->next_tetromino, 0U, &next_position, TETROMINO_BLOCK_COUNT, tetris_st);
+    draw_tetromino(tetris_st->next_tetromino, 0U, &next_position, TETROMINO_BLOCK_COUNT);
 }
 
 static void try_rotate_tetromino(tetris_game_st* tetris_st) {
@@ -244,8 +244,7 @@ void tetris_game_scene(UINT8* keys, tetris_game_st* tetris_st) {
         tetris_st->current_tetromino,
         tetris_st->current_rotation,
         &tetris_st->current_position,
-        0U,
-        tetris_st);
+        0U);
     show_next_tetromino(tetris_st);
     gotoxy(15, 0);
     printf("Score");
