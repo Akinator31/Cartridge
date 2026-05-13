@@ -54,6 +54,9 @@ tetris_game_st* load_tetris(void) {
     tetris_st->frame = 0;
     tetris_st->score = 0;
     tetris_st->final_score = 0;
+    tetris_st->game_over_initialized = FALSE;
+    tetris_st->game_over_anim_row = 0;
+    tetris_st->game_over_anim_done = FALSE;
     set_sprite_data(0, 1, tetris_tile);
     for (uint8_t i = 0; i < 8; i++)
         set_sprite_tile(i, 0);

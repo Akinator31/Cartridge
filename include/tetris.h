@@ -58,6 +58,9 @@ typedef struct tetris_game_s {
         BOOLEAN can_move;
         UINT8 score;
         UINT8 final_score;
+        BOOLEAN game_over_initialized;
+        UINT8 game_over_anim_row;
+        BOOLEAN game_over_anim_done;
 } tetris_game_st;
 
 typedef struct tetris_scene_functions_s {

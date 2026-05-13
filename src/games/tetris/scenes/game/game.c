@@ -1,8 +1,8 @@
 #include "cartridge.h"
+#include "play_sfx.h"
 #include "tetris.h"
 #include <asm/types.h>
 #include <gb/gb.h>
-#include <gb/hardware.h>
 #include <gbdk/console.h>
 #include <stdio.h>
 
@@ -173,6 +173,9 @@ static void spawn_tetromino(tetris_game_st* tetris_st) {
         tetris_st->final_score = tetris_st->score;
         tetris_st->score = 0;
         tetris_st->can_get_next_tetromino = TRUE;
+        tetris_st->game_over_initialized = FALSE;
+        tetris_st->game_over_anim_row = 0;
+        tetris_st->game_over_anim_done = FALSE;
         tetris_st->current_scene = TETRIS_GAME_OVER;
         tetris_st->current_position.x =
             (INT8)(((INT16)BOARD_WIDTH - ((INT16)max_x - (INT16)min_x + 1)) / 2) - min_x;

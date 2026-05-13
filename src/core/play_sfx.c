@@ -1,3 +1,4 @@
+#include "play_sfx.h"
 #include <gb/hardware.h>
 
 void play_score_sfx(void) {
@@ -10,4 +11,15 @@ void play_score_sfx(void) {
     NR12_REG = 0xF3U;
     NR13_REG = 0x70U;
     NR14_REG = 0x86U;
+}
+
+void play_game_over_sfx(void) {
+    NR52_REG = 0x80U;
+    NR50_REG = 0x77U;
+    NR51_REG = 0x22U;
+
+    NR21_REG = 0x40U;
+    NR22_REG = 0xF2U;
+    NR23_REG = 0x20U;
+    NR24_REG = 0xC7U;
 }
