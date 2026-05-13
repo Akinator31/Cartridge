@@ -1,4 +1,4 @@
-#include "arkanoid/arkanoid.h"
+#include "arkanoid.h"
 #include "cartridge.h"
 #include <gb/gb.h>
 #include <gbdk/console.h>

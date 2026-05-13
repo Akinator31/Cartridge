@@ -1,4 +1,4 @@
-#include "arkanoid/arkanoid.h"
+#include "arkanoid.h"
 #include <stdlib.h>
 
 static const arkanoid_scene_functions_st arkanoid_scene_functions[] = {
