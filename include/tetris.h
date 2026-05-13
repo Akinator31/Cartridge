@@ -57,6 +57,7 @@ typedef struct tetris_game_s {
         BOOLEAN can_get_next_tetromino;
         BOOLEAN can_move;
         UINT8 score;
+        UINT8 final_score;
 } tetris_game_st;
 
 typedef struct tetris_scene_functions_s {

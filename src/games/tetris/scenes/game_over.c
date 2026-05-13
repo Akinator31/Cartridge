@@ -12,13 +12,13 @@ void tetris_game_over_scene(UINT8* keys, tetris_game_st* tetris_st) {
     static UINT8 anim_done = 0;
     UINT8 pressed = *keys & (UINT8)~tetris_st->previous_keys;
 
-    save_try_insert_score(SAVE_GAME_TETRIS, tetris_st->score);
     if (!initialized) {
         clean_screen();
         draw_tetris_background();
         anim_row = 0;
         anim_done = 0;
         initialized = 1;
+        save_try_insert_score(SAVE_GAME_TETRIS, tetris_st->final_score);
     }
     if (!anim_done) {
         fill_bkg_rect(0, anim_row, 20, 1, TILE_EMPTY);

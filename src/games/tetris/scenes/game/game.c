@@ -166,6 +166,7 @@ static void spawn_tetromino(tetris_game_st* tetris_st) {
             tetris_st)) {
         clear_board(tetris_st);
         hide_tetromino_sprites();
+        tetris_st->final_score = tetris_st->score;
         tetris_st->score = 0;
         tetris_st->can_get_next_tetromino = TRUE;
         tetris_st->current_scene = TETRIS_GAME_OVER;
