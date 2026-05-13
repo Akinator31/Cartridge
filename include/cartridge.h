@@ -34,6 +34,7 @@ void handle_game_state(core_st* core);
 void start_loop(core_st* core);
 void update_main_menu(core_st* core);
 void clean_screen(void);
+void play_score_sfx(void);
 
 // Game functions
 

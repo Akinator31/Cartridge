@@ -2,6 +2,7 @@
 #include "tetris.h"
 #include <asm/types.h>
 #include <gb/gb.h>
+#include <gb/hardware.h>
 #include <gbdk/console.h>
 #include <stdio.h>
 
@@ -70,7 +71,10 @@ static void handle_if_line_completed(tetris_game_st* tetris_st) {
             move_blocs_in_x(0, BOARD_WIDTH - 1, tetris_st);
         }
     }
-    tetris_st->score += lines_cleared * 10;
+    if (lines_cleared > 0) {
+        tetris_st->score += lines_cleared * 10;
+        play_score_sfx();
+    }
 }
 
 static int8_t tetromino_max_x(tetromino_type type, UINT8 rotation) {
