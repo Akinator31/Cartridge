@@ -1,11 +1,10 @@
 #pragma once
 
-#include <asm/types.h>
-#include <gb/gb.h>
+#include <asm/sm83/types.h>
 
 #define ARKANOID_PADDING 17
 
-typedef enum { ARKANOID_MENU, ARKANOID_PLAY } arkanoid_scene;
+typedef enum { ARKANOID_MENU, ARKANOID_PLAY, ARKANOID_SCOREBOARD } arkanoid_scene;
 
 typedef struct arkanoid_s {
         UINT8 previous_keys;
@@ -32,4 +31,5 @@ void unload_arkanoid(arkanoid_st* state);
 
 void arkanoid_menu_scene(UINT8* keys, arkanoid_st* state);
 void arkanoid_game_scene(UINT8* keys, arkanoid_st* state);
+void arkanoid_scoreboard_scene(UINT8* keys, arkanoid_st* state);
 void arkanoid_setup_game_display(arkanoid_st* state);
