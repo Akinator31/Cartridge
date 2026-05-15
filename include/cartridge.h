@@ -9,6 +9,8 @@
 #define SCREEN_MIN_Y 16
 
 typedef enum GAME_STATE {
+    GAME_STATE_SPLASH,
+    GAME_STATE_TITLE,
     GAME_STATE_MENU,
     GAME_STATE_TETRIS,
     GAME_STATE_SHOOTER,
@@ -32,6 +34,8 @@ typedef struct core_s {
 void switch_state(core_st* core, GAME_STATE new_state);
 void handle_game_state(core_st* core);
 void start_loop(core_st* core);
+void update_splash(core_st* core);
+void update_title(core_st* core);
 void update_main_menu(core_st* core);
 void clean_screen(void);
 void play_score_sfx(void);

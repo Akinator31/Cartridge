@@ -3,8 +3,8 @@
 #include <gb/gb.h>
 
 int main(void) {
-    core_st core = { .state = GAME_STATE_MENU,
-                     .prev_state = GAME_STATE_MENU,
+    core_st core = { .state = GAME_STATE_SPLASH,
+                     .prev_state = GAME_STATE_SPLASH,
                      .tetris_game = NULL,
                      .shooter_game = NULL,
                      .arkanoid = NULL,

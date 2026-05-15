@@ -25,9 +25,6 @@ typedef struct arkanoid_scene_functions_s {
 } arkanoid_scene_functions_st;
 
 void reset_arkanoid_game(arkanoid_st* state);
-arkanoid_st* load_arkanoid(void);
-void update_arkanoid(UINT8* keys, arkanoid_st* state);
-void unload_arkanoid(arkanoid_st* state);
 
 void arkanoid_menu_scene(UINT8* keys, arkanoid_st* state);
 void arkanoid_game_scene(UINT8* keys, arkanoid_st* state);
