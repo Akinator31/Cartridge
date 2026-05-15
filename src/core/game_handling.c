@@ -5,6 +5,10 @@ void switch_state(core_st* core, GAME_STATE new_state) {
     if (core->state != new_state) {
         clean_screen();
         switch (core->prev_state) {
+        case GAME_STATE_SPLASH:
+            break;
+        case GAME_STATE_TITLE:
+            break;
         case GAME_STATE_MENU:
             break;
         case GAME_STATE_TETRIS:
@@ -20,6 +24,10 @@ void switch_state(core_st* core, GAME_STATE new_state) {
         core->prev_state = core->state;
         core->state = new_state;
         switch (core->state) {
+        case GAME_STATE_SPLASH:
+            break;
+        case GAME_STATE_TITLE:
+            break;
         case GAME_STATE_MENU:
             break;
         case GAME_STATE_TETRIS:
@@ -37,6 +45,12 @@ void switch_state(core_st* core, GAME_STATE new_state) {
 
 void handle_game_state(core_st* core) {
     switch (core->state) {
+    case GAME_STATE_SPLASH:
+        update_splash(core);
+        break;
+    case GAME_STATE_TITLE:
+        update_title(core);
+        break;
     case GAME_STATE_MENU:
         update_main_menu(core);
         break;

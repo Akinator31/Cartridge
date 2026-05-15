@@ -1,0 +1,16 @@
+PROJECT_NAME           = "Arcade"
+INPUT                  = src/ include/ README.md docs/
+EXCLUDE                = docs/doxygen-awesome
+RECURSIVE              = YES
+USE_MDFILE_AS_MAINPAGE = README.md
+FILE_PATTERNS          = *.cpp *.hpp *.h *.md
+EXTENSION_MAPPING      = md=Markdown
+
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_COLORSTYLE        = LIGHT
+
+HTML_EXTRA_STYLESHEET  = docs/doxygen-awesome/doxygen-awesome.css
+HTML_EXTRA_FILES       = docs/doxygen-awesome/doxygen-awesome-darkmode-toggle.js
+
+GENERATE_TREEVIEW      = YES
