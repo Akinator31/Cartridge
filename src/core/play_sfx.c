@@ -23,3 +23,15 @@ void play_game_over_sfx(void) {
     NR23_REG = 0x20U;
     NR24_REG = 0xC7U;
 }
+
+void play_wave_up_sfx(void) {
+    NR52_REG = 0x80U;
+    NR50_REG = 0x77U;
+    NR51_REG = 0x11U;
+
+    NR10_REG = 0x15U;
+    NR11_REG = 0x80U;
+    NR12_REG = 0x73U;
+    NR13_REG = 0x00U;
+    NR14_REG = 0x83U;
+}
