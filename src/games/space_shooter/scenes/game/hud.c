@@ -1,4 +1,6 @@
 #include "shooter/hud.h"
+
+#include <asm/sm83/types.h>
 #include <gb/gb.h>
 
 #define HUD_DIGITS_COUNT 10
@@ -54,6 +56,9 @@ void hud_render(const shooter_game_st* shooter_st) {
     row[1] = (UINT8)(HUD_DIGIT_BASE + ((score / 100) % HUD_DIGITS_COUNT));
     row[2] = (UINT8)(HUD_DIGIT_BASE + ((score / 10) % HUD_DIGITS_COUNT));
     row[3] = (UINT8)(HUD_DIGIT_BASE + (score % HUD_DIGITS_COUNT));
+
+    row[8] = (UINT8)(HUD_DIGIT_BASE + ((shooter_st->wave / 10) % HUD_DIGITS_COUNT));
+    row[9] = (UINT8)(HUD_DIGIT_BASE + (shooter_st->wave % HUD_DIGITS_COUNT));
 
     for (i = 0; i < shooter_st->lives && i < SHOOTER_INITIAL_LIVES; i++)
         row[HUD_ROW_WIDTH - 1 - i] = (UINT8)HUD_HEART_TILE;

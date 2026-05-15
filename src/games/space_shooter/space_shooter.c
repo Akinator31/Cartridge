@@ -1,16 +1,14 @@
 #include "shooter/shooter.h"
-#include "shooter/hud.h"
 #include "shooter/player.h"
+#include "shooter/enemy.h"
+#include "shooter/hud.h"
 #include "cartridge.h"
 #include <gb/gb.h>
 #include <stdlib.h>
 
-#define ENEMY_START_X 80
-#define ENEMY_START_Y 16
-
 static const unsigned char shooter_tiles[] = {
-    // Tile 1: le ship
-    0x10, 0x10, 0x10, 0x10, 0x38, 0x38, 0x38, 0x38,
+    // Tile 1: le vaisseau
+    0x18, 0x18, 0x3C, 0x3C, 0x7E, 0x7E, 0xFF, 0xFF,
     0x7C, 0x7C, 0x7C, 0x7C, 0xD6, 0xD6, 0xFF, 0xFF,
     // Tile 2: les bullet
     0x00, 0x00, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18,
@@ -35,6 +33,7 @@ void reset_shooter_play(shooter_game_st* shooter_st) {
     shooter_st->player_y = PLAYER_START_Y;
     shooter_st->fire_cooldown = 0;
     shooter_st->previous_keys = 0;
+    shooter_st->wave = 1;
 
     for (i = 0; i < SHOOTER_MAX_BULLETS; i++) {
         shooter_st->bullets[i].active = 0;
@@ -42,21 +41,26 @@ void reset_shooter_play(shooter_game_st* shooter_st) {
         shooter_st->bullets[i].y = 0;
     }
 
-    shooter_st->enemy.active = 1;
-    shooter_st->enemy.x = ENEMY_START_X;
-    shooter_st->enemy.y = ENEMY_START_Y;
+    for (i = 0; i < SHOOTER_MAX_ENEMIES; i++) {
+        shooter_st->enemies[i].active = 0;
+        shooter_st->enemies[i].x = 0;
+        shooter_st->enemies[i].y = 0;
+    }
+
+    respawn_enemy(&shooter_st->enemies[0]);
 
     set_sprite_data(SHIP_TILE_INDEX, 3, shooter_tiles);
     set_sprite_tile(SHIP_SPRITE_INDEX, SHIP_TILE_INDEX);
     for (i = 0; i < SHOOTER_MAX_BULLETS; i++)
         set_sprite_tile(BULLET_SPRITE_BASE + i, BULLET_TILE_INDEX);
-    set_sprite_tile(ENEMY_SPRITE_INDEX, ENEMY_TILE_INDEX);
+    for (i = 0; i < SHOOTER_MAX_ENEMIES; i++)
+        set_sprite_tile(ENEMY_SPRITE_BASE + i, ENEMY_TILE_INDEX);
 
     hud_init();
 }
 
 shooter_game_st* load_shooter(void) {
-    shooter_game_st* shooter_st = (shooter_game_st*)malloc(sizeof(shooter_game_st));
+    shooter_game_st* shooter_st = malloc(sizeof(shooter_game_st));
 
     shooter_st->previous_keys = 0;
     shooter_st->current_scene = SHOOTER_MENU;
@@ -65,6 +69,7 @@ shooter_game_st* load_shooter(void) {
     shooter_st->player_x = PLAYER_START_X;
     shooter_st->player_y = PLAYER_START_Y;
     shooter_st->fire_cooldown = 0;
+    shooter_st->wave = 1;
 
     return shooter_st;
 }

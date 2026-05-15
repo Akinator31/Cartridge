@@ -3,6 +3,7 @@
 
 #define SHOOTER_MAX_BULLETS   8
 #define SHOOTER_INITIAL_LIVES 3
+#define SHOOTER_MAX_ENEMIES   4
 
 #define BLANK_TILE_INDEX  0
 #define SHIP_TILE_INDEX   1
@@ -11,7 +12,7 @@
 
 #define SHIP_SPRITE_INDEX  0
 #define BULLET_SPRITE_BASE 1
-#define ENEMY_SPRITE_INDEX 9
+#define ENEMY_SPRITE_BASE  9
 
 #define SPRITE_HIDDEN_X 0
 #define SPRITE_HIDDEN_Y 0
@@ -30,7 +31,7 @@ typedef struct enemy_s {
         UINT8 y;
 } enemy_st;
 
-typedef struct shooter_game_s {
+typedef struct shooter_game_st {
         UINT8 previous_keys;
         shooter_scene current_scene;
         UINT16 score;
@@ -39,7 +40,8 @@ typedef struct shooter_game_s {
         UINT8 player_y;
         UINT8 fire_cooldown;
         bullet_st bullets[SHOOTER_MAX_BULLETS];
-        enemy_st enemy;
+        enemy_st enemies[SHOOTER_MAX_ENEMIES];
+        UINT8 wave;
 } shooter_game_st;
 
 typedef struct shooter_scene_functions_s {
