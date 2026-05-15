@@ -6,7 +6,7 @@
 typedef enum {
     SAVE_GAME_TETRIS,
     SAVE_GAME_SHOOTER,
-    SAVE_GAME_KEVIN
+    SAVE_GAME_ARKANOID
 } save_game_id;
 
 void save_init(void);

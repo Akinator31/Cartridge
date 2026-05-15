@@ -1,5 +1,6 @@
 #include "save.h"
 #include <gb/gb.h>
+#include <cartridge.h>
 
 #define SAVE_MAGIC   0xCAFEU
 #define SAVE_VERSION 1U
@@ -10,7 +11,7 @@ typedef struct save_data_s {
     UINT8  reserved;
     UINT16 tetris_scores[SAVE_ENTRIES_PER_GAME];
     UINT16 shooter_scores[SAVE_ENTRIES_PER_GAME];
-    UINT16 kevin_scores[SAVE_ENTRIES_PER_GAME];
+    UINT16 arkanoid_scores[SAVE_ENTRIES_PER_GAME];
 } save_data_st;
 
 #define SAVE_PTR ((volatile save_data_st*)0xA000)
@@ -20,7 +21,7 @@ static volatile UINT16* save_scores_for_game(save_game_id game) {
         return SAVE_PTR->tetris_scores;
     if (game == SAVE_GAME_SHOOTER)
         return SAVE_PTR->shooter_scores;
-    return SAVE_PTR->kevin_scores;
+    return SAVE_PTR->arkanoid_scores;
 }
 
 void save_init(void) {
@@ -36,7 +37,7 @@ void save_init(void) {
         for (i = 0; i < SAVE_ENTRIES_PER_GAME; i++) {
             SAVE_PTR->tetris_scores[i] = 0;
             SAVE_PTR->shooter_scores[i] = 0;
-            SAVE_PTR->kevin_scores[i] = 0;
+            SAVE_PTR->arkanoid_scores[i] = 0;
         }
     }
 
