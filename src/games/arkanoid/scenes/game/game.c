@@ -1,5 +1,6 @@
 #include "arkanoid.h"
 #include "cartridge.h"
+#include "save.h"
 #include <gb/gb.h>
 #include <gbdk/console.h>
 #include <stdio.h>
@@ -86,6 +87,7 @@ void arkanoid_game_scene(UINT8* keys, arkanoid_st* state) {
 
         if (state->bricks_left == 0) {
             state->game_over = 1;
+            save_try_insert_score(SAVE_GAME_ARKANOID, state->score);
             gotoxy(5, 10);
             printf("YOU WIN!");
             gotoxy(2, 12);
@@ -112,6 +114,7 @@ void arkanoid_game_scene(UINT8* keys, arkanoid_st* state) {
             state->ball_dy = -1;
         } else {
             state->game_over = 1;
+            save_try_insert_score(SAVE_GAME_ARKANOID, state->score);
             gotoxy(5, 10);
             printf("GAME OVER");
             gotoxy(5, 12);

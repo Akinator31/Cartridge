@@ -1,9 +1,11 @@
 #include "arkanoid.h"
+#include "cartridge.h"
 #include <stdlib.h>
 
 static const arkanoid_scene_functions_st arkanoid_scene_functions[] = {
     { .scene_func = arkanoid_menu_scene },
-    { .scene_func = arkanoid_game_scene }
+    { .scene_func = arkanoid_game_scene },
+    { .scene_func = arkanoid_scoreboard_scene }
 };
 
 void reset_arkanoid_game(arkanoid_st* state) {
